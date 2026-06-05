@@ -22,10 +22,6 @@ jobs:
     needs: build
     uses: ./.github/workflows/ig-qa.yaml
 
-  release:
-    needs: qa
-    uses: ./.github/workflows/ig-release.yaml
-
   deploy-dev:
     needs: qa
     uses: ./.github/workflows/ig-deploy-dev.yaml
