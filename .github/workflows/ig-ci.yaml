@@ -16,16 +16,16 @@ concurrency:
 
 jobs:
   build:
-    uses: ./.github/workflows/ig-build.yml
+    uses: ./.github/workflows/ig-build.yaml
 
   qa:
     needs: build
-    uses: ./.github/workflows/ig-qa.yml
+    uses: ./.github/workflows/ig-qa.yaml
 
   release:
     needs: qa
-    uses: ./.github/workflows/ig-release.yml
+    uses: ./.github/workflows/ig-release.yaml
 
   deploy-dev:
     needs: qa
-    uses: ./.github/workflows/ig-deploy-dev.yml
+    uses: ./.github/workflows/ig-deploy-dev.yaml
