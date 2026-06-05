@@ -1,0 +1,35 @@
+name: QA
+
+on:
+  workflow_call:
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: fhir-artifacts
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y default-jre ruby-full
+          sudo gem install jekyll
+
+      - name: Install IG Publisher
+        run: |
+          chmod +x ./_updatePublisher.sh
+          ./_updatePublisher.sh -y
+
+      - name: Run IG QA
+        run: |
+          chmod +x ./_genonce.sh
+          ./_genonce.sh
+
+      - name: Upload QA results
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-results
+          path: output/
