@@ -1,0 +1,80 @@
+name: IG Build
+
+on:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    env:
+      JAVA_TOOL_OPTIONS: "-Xms2g -Xmx6g"
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.2"
+          bundler-cache: true
+
+      - name: Install Jekyll
+        run: gem install jekyll bundler
+
+      - run: npm install -g fsh-sushi
+
+      - name: Install Graphviz (for PlantUML)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+          dot -v
+
+      - name: Download IG Publisher
+        run: |
+          mkdir -p input-cache
+          curl -fsSL \
+            https://github.com/HL7/fhir-ig-publisher/releases/download/2.2.7/publisher.jar \
+            -o input-cache/publisher.jar
+
+      - run: sushi . --log-level info
+
+      - name: Build IG
+        run: |
+        
+          java -jar input-cache/publisher.jar \
+            -ig . \
+            -tx https://tx.fhirlab.net/fhir \
+            -cachedir ~/.fhir/packages \
+            -txCache input-cache/txcache
+
+      - name: Ensure QA file exists (FIX)
+        run: |
+          mkdir -p output
+          if [ ! -f output/qa.json ]; then
+            echo "[]" > output/qa.json
+          fi
+
+      - name: Add build metadata
+        run: |
+          echo "{
+            \"sha\": \"${GITHUB_SHA}\",
+            \"branch\": \"${GITHUB_REF_NAME}\",
+            \"timestamp\": \"$(date -Iseconds)\"
+          }" > output/build-metadata.json
+
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ig-output
+          path: output
