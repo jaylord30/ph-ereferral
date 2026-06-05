@@ -1,0 +1,97 @@
+# fhir.ph.ereferral#0.1.0: PH eReferral Implementation Guide(en)
+
+## Pages
+
+* [Home](index.md)
+* [Decision Log](decision-log.md)
+* [V 01 Scope](v01-scope.md)
+* [Coverage Map](coverage-map.md)
+* [Connectathon Readiness](connectathon-readiness.md)
+* [Who Smart L 1](who-smart-l1.md)
+* [Artifacts Summary](artifacts.md)
+
+## Resources
+
+### CodeSystems
+
+* [eReferral Workflow Code System](CodeSystem-ereferral-workflow.md)
+* [PWD Disability Type Code System](CodeSystem-pwd-disability-type-cs.md)
+
+### ValueSets
+
+* [eReferral Priority](ValueSet-ereferral-priority.md)
+* [eReferral Reason](ValueSet-ereferral-reason.md)
+* [eReferral Receiving Facility Response](ValueSet-ereferral-receiving-response.md)
+* [eReferral Relationship Type](ValueSet-ereferral-relationship-type.md)
+* [eReferral Service Category](ValueSet-ereferral-service-category.md)
+* [PWD Disability Type Value Set](ValueSet-pwd-disability-type-vs.md)
+
+### Resource Profiles
+
+* [ERefEncounter](StructureDefinition-ereferral-encounter.md)
+* [ERefImmunization](StructureDefinition-ereferral-immunization.md)
+* [EReferral MedicationAdministration](StructureDefinition-ereferral-medication-administration.md)
+* [EReferral Observation](StructureDefinition-ereferral-observation.md)
+* [ERefPatient](StructureDefinition-ereferral-patient.md)
+* [PH eReferral PractitionerRole](StructureDefinition-ereferral-practitioner-role.md)
+* [EReferral Provenance](StructureDefinition-ereferral-provenance.md)
+* [EReferral RelatedPerson](StructureDefinition-ereferral-related-person.md)
+* [EReferral ServiceRequest](StructureDefinition-ereferral-service-request.md)
+* [EReferral Task](StructureDefinition-ereferral-task.md)
+
+### Extensions
+
+* [PWD Disability Registration](StructureDefinition-ereferral-pwd-disability.md)
+
+### ImplementationGuides
+
+* [PH eReferral Implementation Guide](ImplementationGuide-fhir.ph.ereferral.md)
+
+### Examples
+
+* [ExampleERefConditionChestPain (Condition)](Condition-ExampleERefConditionChestPain.md)
+* [ExampleERefEncounter (Encounter)](Encounter-ExampleERefEncounter.md)
+* [ExampleERefImmunizationRoutine (Immunization)](Immunization-ExampleERefImmunizationRoutine.md)
+* [ExampleERefMedicationAntibiotic (Medication)](Medication-ExampleERefMedicationAntibiotic.md)
+* [ExampleERefMedicationTwinact (Medication)](Medication-ExampleERefMedicationTwinact.md)
+* [ExampleERefMedicationAdministrationAntibiotic (MedicationAdministration)](MedicationAdministration-ExampleERefMedicationAdministrationAntibiotic.md)
+* [ExampleERefMedicationAdministrationChronic (MedicationAdministration)](MedicationAdministration-ExampleERefMedicationAdministrationChronic.md)
+* [ExampleERefObservationBP (Observation)](Observation-ExampleERefObservationBP.md)
+* [ExampleERefObservationChiefComplaint (Observation)](Observation-ExampleERefObservationChiefComplaint.md)
+* [ExampleERefObservationECG (Observation)](Observation-ExampleERefObservationECG.md)
+* [ExampleERefObservationHeartRate (Observation)](Observation-ExampleERefObservationHeartRate.md)
+* [ExampleERefObservationLabGlucose (Observation)](Observation-ExampleERefObservationLabGlucose.md)
+* [ExampleERefObservationOxygenSat (Observation)](Observation-ExampleERefObservationOxygenSat.md)
+* [ExampleERefObservationRespiratoryRate (Observation)](Observation-ExampleERefObservationRespiratoryRate.md)
+* [ExampleERefObservationTemperature (Observation)](Observation-ExampleERefObservationTemperature.md)
+* [ExampleERefObservationWeight (Observation)](Observation-ExampleERefObservationWeight.md)
+* [Rural Health Unit - Barangay Health Center (Organization)](Organization-ExampleERefOrganizationMinimal.md)
+* [Eastern District Medical Center (Organization)](Organization-ExampleERefOrganizationOnwardReceiving.md)
+* [Manila General Hospital (Organization)](Organization-ExampleERefOrganizationReceiving.md)
+* [Rural Health Unit - Barangay Health Center (Organization)](Organization-ExampleERefOrganizationRequester.md)
+* [Philippine Heart Center (Organization)](Organization-ExampleERefReceivingHospital.md)
+* [Manila General Hospital - Barangay 143 Health Center (Organization)](Organization-ExampleERefReferringFacility.md)
+* [ERefPatientExample (Patient)](Patient-ERefPatientExample.md)
+* [ExampleERefPatient (Patient)](Patient-ExampleERefPatient.md)
+* [ExampleERefPatientMinimal (Patient)](Patient-ExampleERefPatientMinimal.md)
+* [ExampleERefPatientTask (Patient)](Patient-ExampleERefPatientTask.md)
+* [ExampleERefPractitioner (Practitioner)](Practitioner-ExampleERefPractitioner.md)
+* [ExampleERefPractitionerMinimal (Practitioner)](Practitioner-ExampleERefPractitionerMinimal.md)
+* [ExampleERefPractitionerRequester (Practitioner)](Practitioner-ExampleERefPractitionerRequester.md)
+* [ExampleERefPractitionerRole (PractitionerRole)](PractitionerRole-ExampleERefPractitionerRole.md)
+* [ExampleERefPractitionerRoleMinimal (PractitionerRole)](PractitionerRole-ExampleERefPractitionerRoleMinimal.md)
+* [ExampleERefPractitionerRoleRequester (PractitionerRole)](PractitionerRole-ExampleERefPractitionerRoleRequester.md)
+* [ExampleERefProvenanceSignature (Provenance)](Provenance-ExampleERefProvenanceSignature.md)
+* [ExampleERefProvenanceUpdate (Provenance)](Provenance-ExampleERefProvenanceUpdate.md)
+* [ExampleERefRelatedPersonAccompanying (RelatedPerson)](RelatedPerson-ExampleERefRelatedPersonAccompanying.md)
+* [ExampleERefRelatedPersonNextOfKin (RelatedPerson)](RelatedPerson-ExampleERefRelatedPersonNextOfKin.md)
+* [ExampleERefServiceRequest (ServiceRequest)](ServiceRequest-ExampleERefServiceRequest.md)
+* [ExampleERefServiceRequestMinimal (ServiceRequest)](ServiceRequest-ExampleERefServiceRequestMinimal.md)
+* [ExampleERefServiceRequestOnward (ServiceRequest)](ServiceRequest-ExampleERefServiceRequestOnward.md)
+* [ExampleERefServiceRequestTask (ServiceRequest)](ServiceRequest-ExampleERefServiceRequestTask.md)
+* [ExampleERefTaskAccepted (Task)](Task-ExampleERefTaskAccepted.md)
+* [ExampleERefTaskCompleted (Task)](Task-ExampleERefTaskCompleted.md)
+* [ExampleERefTaskReceived (Task)](Task-ExampleERefTaskReceived.md)
+* [ExampleERefTaskReferredOnward (Task)](Task-ExampleERefTaskReferredOnward.md)
+* [ExampleERefTaskRejected (Task)](Task-ExampleERefTaskRejected.md)
+* [ExampleERefTaskRequested (Task)](Task-ExampleERefTaskRequested.md)
