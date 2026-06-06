@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Condition xmlns="http://hl7.org/fhir">
+  <id value="ExampleERefConditionChestPain"/>
+  <meta>
+    <profile value="https://fhir.doh.gov.ph/phcore/StructureDefinition/ph-core-condition"/>
+  </meta>
+  <language value="en"/>
+  <text>
+    <status value="generated"/><div xmlns="http://www.w3.org/1999/xhtml"><p class="res-header-id"><b>Generated Narrative: Condition ExampleERefConditionChestPain</b></p><a name="ExampleERefConditionChestPain"> </a><a name="hcExampleERefConditionChestPain"> </a><div style="display: inline-block; background-color: #d9e0e7; padding: 6px; margin: 4px; border: 1px solid #8da1b4; border-radius: 5px; line-height: 60%"><p style="margin-bottom: 0px"/><p style="margin-bottom: 0px">Profile: <a href="https://build.fhir.org/ig/jldalisay95/ph-core-jld/StructureDefinition-ph-core-condition.html">PH Core Condition</a></p></div><p><b>clinicalStatus</b>: <span title="Codes:{http://terminology.hl7.org/CodeSystem/condition-clinical active}">Active</span></p><p><b>verificationStatus</b>: <span title="Codes:{http://snomed.info/sct provisional}">Provisional</span></p><p><b>category</b>: <span title="Codes:{http://snomed.info/sct 439401001}">Diagnosis</span></p><p><b>severity</b>: <span title="Codes:{http://snomed.info/sct 24484000}">Severe</span></p><p><b>code</b>: <span title="Codes:{http://snomed.info/sct 29857009}">Chest pain on exertion</span></p><p><b>subject</b>: <a href="Patient-ExampleERefPatient.html">Juan Miguel Dela Cruz  Male, DoB: 1965-07-20 ( urn:oid:2.16.840.1.113883.2.9.4.3.2#PH-123456789)</a></p><p><b>onset</b>: 2025-03-12</p></div>
+  </text>
+  <clinicalStatus>
+    <coding>
+      <system value="http://terminology.hl7.org/CodeSystem/condition-clinical"/>
+      <code value="active"/>
+    </coding>
+  </clinicalStatus>
+  <verificationStatus>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="provisional"/>
+      <display value="Provisional"/>
+    </coding>
+  </verificationStatus>
+  <category>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="439401001"/>
+      <display value="Diagnosis"/>
+    </coding>
+  </category>
+  <severity>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="24484000"/>
+      <display value="Severe"/>
+    </coding>
+  </severity>
+  <code>
+    <coding>
+      <system value="http://snomed.info/sct"/>
+      <code value="29857009"/>
+      <display value="Chest pain"/>
+    </coding>
+    <text value="Chest pain on exertion"/>
+  </code>
+  <subject>
+    <reference value="Patient/ExampleERefPatient"/>
+  </subject>
+  <onsetDateTime value="2025-03-12"/>
+</Condition>
