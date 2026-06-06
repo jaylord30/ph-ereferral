@@ -1,0 +1,78 @@
+# This CI/CD workflow was derived from the HL7 FHIR IPS project:
+# https://github.com/HL7/fhir-ips/blob/master/.github/workflows/validate-docs.yml
+# Original license: Apache 2.0 (per HL7 FHIR licensing)
+# Modified to follow linear build pattern from PH eReferral IG
+# Docker implementation inspired by:
+# https://www.argentixinfo.com/archives/156 (Automating Github FHIR IG Builds)
+
+name: Build PH eReferral FHIR IG
+
+on:
+  # pull_request:
+  #   branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Validate branch name
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+        run: |
+          if echo "$BRANCH_NAME" | grep -q '/'; then
+            echo "::error::Branch name contains '/'. Use hyphens instead."
+            exit 1
+          fi
+          if echo "$BRANCH_NAME" | grep -qE '[\\~^:\[\] ]'; then
+            echo "::error::Branch name contains invalid special characters."
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          # Checkout the PR branch tip as-is, not a simulated merge commit
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
+          sudo gem install jekyll
+          sudo npm install -g fsh-sushi
+
+      - name: Build IG
+        run: |
+          chmod +x ./_updatePublisher.sh
+          ./_updatePublisher.sh -y
+          chmod +x ./_genonce.sh
+          ./_genonce.sh
+          
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ig-output
+          path: ./output
+
+      - name: QA Gate
+        run: |
+          if [ ! -f output/qa.json ]; then
+            echo "::error::No qa.json found in output/. Failing for safety."
+            exit 1
+          fi
+
+          echo "📄 Printing qa.json for inspection..."
+          cat output/qa.json
+          
+          ERRORS=$(jq -r '.errs // 0' output/qa.json)
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "::error::QA errors found: $ERRORS"
+            exit 1
+          fi
+          echo "✅ QA passed: $ERRORS errors"
